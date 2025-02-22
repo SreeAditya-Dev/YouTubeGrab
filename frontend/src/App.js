@@ -15,12 +15,11 @@ function App() {
     };
 
     const handleNumLinksChange = (e) => {
-      const value = e.target.value;
-      // Ensure the value is a positive integer
-      const newNumLinks = Math.max(1, parseInt(value) || 1);
-      setNumLinks(newNumLinks);
-      setLinks(Array(newNumLinks).fill(''));
-  };
+        const value = e.target.value;
+        const newNumLinks = Math.max(1, parseInt(value) || 1);
+        setNumLinks(newNumLinks);
+        setLinks(Array(newNumLinks).fill(''));
+    };
 
     const handleSubmit = async () => {
         setLoading(true);
@@ -52,17 +51,19 @@ function App() {
                     min="1"
                 />
             </div>
-            {links.map((link, index) => (
-                <div key={index} className="input-container">
-                    <label>YouTube Link {index + 1}:</label>
-                    <input
-                        type="text"
-                        value={link}
-                        onChange={(e) => handleLinkChange(index, e.target.value)}
-                        placeholder="Paste YouTube link here"
-                    />
-                </div>
-            ))}
+            <div className="links-container">
+                {links.map((link, index) => (
+                    <div key={index} className="input-container">
+                        <label>YouTube Link {index + 1}:</label>
+                        <input
+                            type="text"
+                            value={link}
+                            onChange={(e) => handleLinkChange(index, e.target.value)}
+                            placeholder="Paste YouTube link here"
+                        />
+                    </div>
+                ))}
+            </div>
             <div className="input-container">
                 <label>Output Format:</label>
                 <select value={format} onChange={(e) => setFormat(e.target.value)}>
